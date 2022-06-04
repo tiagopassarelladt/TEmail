@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D5B3AE6B-D506-4346-A194-F46BF15B0723}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="compTEmail.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="exemplo\ExemploTEmail.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="compTEmail">
+        <MSBuild Projects="compTEmail.dproj"/>
+    </Target>
+    <Target Name="compTEmail:Clean">
+        <MSBuild Projects="compTEmail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="compTEmail:Make">
+        <MSBuild Projects="compTEmail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExemploTEmail">
+        <MSBuild Projects="exemplo\ExemploTEmail.dproj"/>
+    </Target>
+    <Target Name="ExemploTEmail:Clean">
+        <MSBuild Projects="exemplo\ExemploTEmail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExemploTEmail:Make">
+        <MSBuild Projects="exemplo\ExemploTEmail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="compTEmail;ExemploTEmail"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="compTEmail:Clean;ExemploTEmail:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="compTEmail:Make;ExemploTEmail:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

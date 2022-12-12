@@ -165,7 +165,7 @@ begin
   FConfiguracoes:= TConfiguracoes.Create;
   FAnexos       := TStringList.Create;
   Self.FVersao  := '2.0.1';
-  Self.FSobre   := 'htts://inovefast.com.br';
+  Self.FSobre   := 'www.inovefast.com.br';
   self.fCedido  := 'https://github.com/tiagopassarelladt?tab=repositories';
 end;
 

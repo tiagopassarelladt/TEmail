@@ -24,7 +24,6 @@ object Form1: TForm1
     Align = alClient
     Caption = 'Enviar E-mail'
     TabOrder = 0
-    ExplicitHeight = 575
     object GroupBox3: TGroupBox
       AlignWithMargins = True
       Left = 5
@@ -227,23 +226,22 @@ object Form1: TForm1
     object GroupBox1: TGroupBox
       AlignWithMargins = True
       Left = 5
-      Top = 381
+      Top = 375
       Width = 548
-      Height = 65
+      Height = 50
       Align = alTop
       Caption = '[Anexos]'
       TabOrder = 2
-      ExplicitTop = 384
       object ListBox1: TListBox
         Left = 2
         Top = 15
         Width = 544
-        Height = 48
+        Height = 33
         Align = alClient
         BorderStyle = bsNone
         ItemHeight = 13
         TabOrder = 0
-        ExplicitHeight = 89
+        ExplicitHeight = 48
       end
     end
     object GroupBox4: TGroupBox
@@ -251,26 +249,26 @@ object Form1: TForm1
       Left = 5
       Top = 289
       Width = 548
-      Height = 86
+      Height = 80
       Align = alTop
       Caption = '[Mensagem do e-mail]'
       TabOrder = 3
-      ExplicitTop = 251
       object Mensagem: TMemo
         Left = 2
         Top = 15
         Width = 544
-        Height = 69
+        Height = 63
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitHeight = 69
       end
     end
     object btnAnexos: TButton
       Left = 485
-      Top = 455
+      Top = 431
       Width = 30
       Height = 28
       Cursor = crHandPoint
@@ -286,7 +284,7 @@ object Form1: TForm1
     end
     object btnLimparAnexos: TButton
       Left = 449
-      Top = 455
+      Top = 431
       Width = 30
       Height = 28
       Cursor = crHandPoint
@@ -302,7 +300,7 @@ object Form1: TForm1
     end
     object Button2: TButton
       Left = 521
-      Top = 455
+      Top = 431
       Width = 30
       Height = 28
       Cursor = crHandPoint
@@ -316,9 +314,9 @@ object Form1: TForm1
     object memStatus: TMemo
       AlignWithMargins = True
       Left = 5
-      Top = 455
+      Top = 431
       Width = 438
-      Height = 28
+      Height = 52
       Color = clInfoBk
       Lines.Strings = (
         'log....')

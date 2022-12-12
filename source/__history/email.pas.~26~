@@ -2,41 +2,14 @@ unit email;
 
 interface
   uses
-     {$IF DEFINED(FPC)}
+     {$IFNDEF FPC}
       Classes,
       SysUtils,
       RegExpr,//RegularExpressions,
       Generics.Collections,
 
-      uregexpr,
-      IdSMTP,
       IdExplicitTLSClientServerBase,
-      IdSSLOpenSSL,
-      IdConnectThroughHttpProxy,
-      IdText,
-      IdComponent,
-      IdTCPConnection,
-      IdTCPClient,
-      IdMessageClient,
-      IdSMTPBase,
-      IdBaseComponent,
-      IdIOHandler,
-      IdIOHandlerSocket,
-      IdIOHandlerStack,
-      IdSSL,
-      IdSocks,
-      IdMessage,
-      IdAttachmentFile,
-      LConvEncoding
-
-    {$ELSE} //DEFINE DELPHI
-      System.Classes,
-      System.SysUtils,
-      System.RegularExpressions,
-      System.Generics.Collections,
-
       IdSMTP,
-      IdExplicitTLSClientServerBase ,
       IdSSLOpenSSL,
       IdConnectThroughHttpProxy,
       IdText,
@@ -53,7 +26,32 @@ interface
       IdSocks,
       IdMessage,
       IdAttachmentFile
-    {$ENDIF} ;
+{$ELSE}
+      System.Classes,
+      System.SysUtils,
+      System.RegularExpressions,
+      System.Generics.Collections,
+
+      IdExplicitTLSClientServerBase,
+      IdSMTP,
+      IdSSLOpenSSL,
+      IdConnectThroughHttpProxy,
+      IdText,
+      IdComponent,
+      IdTCPConnection,
+      IdTCPClient,
+      IdMessageClient,
+      IdSMTPBase,
+      IdBaseComponent,
+      IdIOHandler,
+      IdIOHandlerSocket,
+      IdIOHandlerStack,
+      IdSSL,
+      IdSocks,
+      IdMessage,
+      IdAttachmentFile
+{$ENDIF} ;
+
 
 
 
@@ -165,7 +163,7 @@ begin
   FConfiguracoes:= TConfiguracoes.Create;
   FAnexos       := TStringList.Create;
   Self.FVersao  := '2.0.1';
-  Self.FSobre   := 'htts://inovefast.com.br';
+  Self.FSobre   := 'www.inovefast.com.br';
   self.fCedido  := 'https://github.com/tiagopassarelladt?tab=repositories';
 end;
 
@@ -182,7 +180,6 @@ end;
 
 procedure TEMail.Enviar(const AEmailDestinatario: string; const ATitulo: string; const AMensagem : WideString;
 AEmailcc : string = ''; AEmailcco : string = ''; AEmailReplyTo : string='');
-
 var
   FSMTP : TIdSMTP;
   FIdSSLIOHandlerSocketOpenSSL: TIdSSLIOHandlerSocketOpenSSL;
@@ -193,9 +190,8 @@ var
   FIdSocksInfo                : TIdSocksInfo;
   FArquivo                    : string;
   maillist                    : string;
-
 begin
-  SetStatus('Processando pedido de envio de e-mail');
+  SetStatus('Iniciando');
 
   FSMTP                        := nil;
   FIdSSLIOHandlerSocketOpenSSL := nil;
@@ -263,14 +259,37 @@ begin
     FIdMensagem.Priority                  := mpNormal;
     FIdMensagem.From.Address              := Self.Configuracoes.Email;
     FIdMensagem.From.Name                 := Self.Configuracoes.NomeCedente;
-    FIdMensagem.ReplyTo.EMailAddresses    := FIdMensagem.From.Address;
-    FIdMensagem.Recipients.EMailAddresses := AEmailDestinatario;
+    FIdMensagem.ReplyTo.EMailAddresses    := trim(FIdMensagem.From.Address);
+    FIdMensagem.Recipients.EMailAddresses := trim(AEmailDestinatario);
     FIdMensagem.Subject                   := trim(ATitulo);
     FIdMensagem.Body.Text                 := AMensagem;
 
     if AEmailcc      <> '' then FIdMensagem.CCList.EMailAddresses  := AEmailcc;          // Added by Francisco Aurino 12/12/2022 11:26:29
     if AEmailcco     <> '' then FIdMensagem.BccList.EMailAddresses := AEmailcco;         // Added by Francisco Aurino 12/12/2022 11:26:29
     if AEmailReplyTo <> '' then FIdMensagem.ReplyTo.EMailAddresses := AEmailReplyTo;     // Added by Francisco Aurino 12/12/2022 11:33:12
+
+   {if with email list separated by ; }
+    for maillist in AEmailcc.Split([';']) do  // Added upgrade by Francisco Aurino 12/12/2022 12:59:00
+    begin
+     FIdMensagem.CCList.EMailAddresses  := Trim(maillist);
+     if FIdMensagem.CCList.EMailAddresses <> '' then
+     begin
+      FIdMensagem.CCList.EMailAddresses := '';
+      FIdMensagem.CCList.add.Address    := FIdMensagem.CCList.EMailAddresses  ;
+     end;
+    end;
+
+    {if with email list separated by ; }
+    for maillist in AEmailcco.Split([';']) do  // Added upgrade by Francisco Aurino 12/12/2022 12:59:00
+    begin
+     FIdMensagem.BccList.EMailAddresses  := Trim(maillist);
+     if FIdMensagem.BccList.EMailAddresses <> '' then
+     begin
+      FIdMensagem.BccList.EMailAddresses := '';
+      FIdMensagem.BccList.add.Address    := FIdMensagem.BccList.EMailAddresses  ;
+     end;
+    end;
+
 
     FIdText := TIdText.Create(FIdMensagem.MessageParts, FIdMensagem.Body);
     FIdText.ContentType := 'text/html';
@@ -279,7 +298,7 @@ begin
     for FArquivo in Self.Anexos do
     begin
       if not FileExists(FArquivo) then
-        raise Exception.Create('Anexo ' + FArquivo +' inexistente');
+        raise Exception.Create('Anexo ' + FArquivo +' não encontrado');
 
       FIdAttachmentFile := TIdAttachmentFile.Create(FIdMensagem.MessageParts, FArquivo);
     end;
@@ -287,7 +306,7 @@ begin
     try
       if not FSMTP.Connected then
       begin
-        SetStatus ( 'Conectando ao provedor de e-mail' )  ;
+        SetStatus('Conectando ao serviço de e-mail');
 
         FSMTP.Connect;
 
@@ -312,12 +331,11 @@ begin
       on E:Exception do
       begin
         SetError(E.Message);
-        SetStatus('error: '+e.message);
         raise Exception.Create(E.Message);
       end;
     end;
   finally
-    SetStatus('Desconectando do provedor de email');
+    SetStatus('Desconectando do serviço de e-mail');
 
     if FSMTP.Connected then
       FSMTP.Disconnect(True);
@@ -339,7 +357,7 @@ begin
 
     FreeAndNil(FSMTP);
 
-    SetStatus('Processo finalizado');
+    SetStatus('Concluído');
   end;
 end;
 
@@ -357,44 +375,32 @@ end;
 procedure TEMail.MontarImagensEmail(const AIdMessage: TIdMessage);
 var
   FMensagem, FArquivo, FImagemID: String;
-  FRegEx: {$IF DEFINED(FPC)} TRegExpr {$ELSE}TRegEx{$ENDIF};
-  FMatchCollection:{$IF DEFINED(FPC)} TStringList {$ELSE}TMatchCollection{$ENDIF};
-  FMatch: {$IF DEFINED(FPC)} TStringList {$ELSE}TMatch{$ENDIF};
+  FRegEx: TRegEx;
+  FMatchCollection: TMatchCollection;
+  FMatch: TMatch;
   FIdAttachmentFile: TIdAttachmentFile;
-  content: ansistring;
 begin
   FMensagem := AIDMessage.Body.Text;
 
-  {$IFDEF FPC}
-    FRegEx := TRegExpr.Create;
-    FRegEx.Expression := '<img\s+src\s*=\s*(["''][^"'']+["'']|[^>]+)>';
-    FMatchCollection := tstringlist.Create;
-    FMatchCollection.Text := FMensagem;// FRegEx.Matches(FMensagem);
+  FRegEx := TRegEx.Create('<img\s+src\s*=\s*(["''][^"'']+["'']|[^>]+)>', [roIgnoreCase, roMultiLine]);
+  FMatchCollection := FRegEx.Matches(FMensagem);
+  for FMatch in FMatchCollection do
+  begin
+    if not FMatch.success then
+      Continue;
 
-    //a fazer
-    FMatchCollection.Free;
-  {$else}
-   FRegEx := TRegEx.Create('<img\s+src\s*=\s*(["''][^"'']+["'']|[^>]+)>', [roIgnoreCase, roMultiLine]);
-   FMatchCollection := FRegEx.Matches(FMensagem);
-   for FMatch in FMatchCollection do
-   begin
-     if not FMatch.success then
-       Continue;
+    FImagemID := FMatch.Groups[0].Value;
+    FImagemID := FImagemID.Substring(FImagemID.IndexOf('cid:') + Length('cid:'), FImagemID.LastIndexOf('"') - (FImagemID.IndexOf('cid:') + Length('cid:')));
 
-     FImagemID := FMatch.Groups[0].Value;
-     FImagemID := FImagemID.Substring(FImagemID.IndexOf('cid:') + Length('cid:'), FImagemID.LastIndexOf('"') - (FImagemID.IndexOf('cid:') + Length('cid:')));
+    FArquivo := FImagemID + '.jpg';
+    if not FileExists(FArquivo) then
+      Continue;
 
-     FArquivo := FImagemID + '.jpg';
-     if not FileExists(FArquivo) then
-       Continue;
-
-     FIdAttachmentFile := TIdAttachmentFile.Create(AIdMessage.MessageParts, FArquivo);
-     FIdAttachmentFile.ContentType        := 'image/jpg';
-     FIdAttachmentFile.ContentDisposition := 'inline';
-     FIdAttachmentFile.ContentID          := '<' + FImagemID + '>';
-   end;
-  {$ENDIF}
-
+    FIdAttachmentFile := TIdAttachmentFile.Create(AIdMessage.MessageParts, FArquivo);
+    FIdAttachmentFile.ContentType        := 'image/jpg';
+    FIdAttachmentFile.ContentDisposition := 'inline';
+    FIdAttachmentFile.ContentID          := '<' + FImagemID + '>';
+  end;
 end;
 
 procedure TEMail.SetConfiguracoes(const Value: TConfiguracoes);

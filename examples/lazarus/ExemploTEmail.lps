@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Release"/>
+    <Units Count="14">
+      <Unit0>
+        <Filename Value="ExemploTEmail.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Main"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="123"/>
+        <CursorPos X="99" Y="129"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="C:\projetos\consulta cnpj\lazarus\unit1.pas"/>
+        <ComponentName Value="frmEanpictures"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="484"/>
+        <CursorPos X="38" Y="19"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\projetos\Lazarus\nuvemfiscal\lazarus\demo\view\unuvemfiscal.pas"/>
+        <HasResources Value="True"/>
+        <UnitName Value="uNuvemFiscal"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="34" Y="10"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="C:\projetos\Lazarus\nuvemfiscal\lazarus\demo\frames\uempresa.pas"/>
+        <ComponentName Value="uEmpresa"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="uEmpresa"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="67" Y="11"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\projetos\Lazarus\Demo\unit1.pas"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="39" Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\Users\Franc\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdReplySMTP.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="485"/>
+        <CursorPos Y="503"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\..\source\email.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="150"/>
+        <CursorPos X="22" Y="169"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\..\..\ACBr_CE10.4\Exemplos\ACBrDFe\ACBrNFe\Lazarus\Frm_ACBrNFe.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="567"/>
+        <CursorPos X="30" Y="549"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\..\..\ACBr_CE10.4\Fontes\ACBrDFe\ACBrNFe\ACBrNFe.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="97"/>
+        <CursorPos X="85" Y="100"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\..\ACBr_CE10.4\Fontes\ACBrDFe\ACBrXmlDocument.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="455"/>
+        <CursorPos X="22" Y="484"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\inc\ustrings.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1612"/>
+        <CursorPos X="19" Y="1636"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\Users\Franc\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdSMTP.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="197"/>
+        <CursorPos X="3" Y="215"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\Users\Franc\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdComponent.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="80"/>
+        <CursorPos X="3" Y="95"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit13>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="277" TopLine="260"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="294" Column="7" TopLine="265"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="284" Column="57" TopLine="265"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="283" Column="14" TopLine="266"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="285" Column="44" TopLine="272"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="295" Column="37" TopLine="276"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="136" Column="9" TopLine="123"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="289" Column="43" TopLine="267"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pas"/>
+        <Caret Line="134" Column="22" TopLine="123"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="182" Column="49" TopLine="182"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="129" Column="46" TopLine="112"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="182" Column="49" TopLine="168"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="290" Column="11" TopLine="272"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="184" Column="24" TopLine="165"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="130" Column="21" TopLine="115"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="184" Column="23" TopLine="154"/>
+      </Position16>
+      <Position17>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="294" Column="56" TopLine="273"/>
+      </Position17>
+      <Position18>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="291" Column="55" TopLine="273"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="187" Column="3" TopLine="169"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="292" Column="45" TopLine="275"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="293" Column="9" TopLine="275"/>
+      </Position21>
+      <Position22>
+        <Filename Value="C:\Users\Franc\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdComponent.pas"/>
+        <Caret Line="137" Column="14" TopLine="121"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="294" Column="45" TopLine="275"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="187" Column="3" TopLine="169"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="294" Column="60" TopLine="266"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="292" TopLine="277"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="416" Column="3" TopLine="397"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="133" Column="23" TopLine="111"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="353" Column="26" TopLine="324"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\..\source\email.pas"/>
+        <Caret Line="133" Column="23" TopLine="116"/>
+      </Position30>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

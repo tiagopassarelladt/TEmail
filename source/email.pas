@@ -42,9 +42,9 @@ type
     FUsuarioProxy    : String;
     FPortaProxy      : Integer;
     FUtilizaSSL      : Boolean;
+    FUtilizaTLS      : Integer;
     FTipoProxy       : TTipoProxy;
     FSenha           : String;
-    FUtilizaTLS      : Integer;
     FServidorProxy   : String;
     FTipoAutenticacao: Integer;
     FUsuario         : String;
@@ -79,6 +79,8 @@ type
     FOnError      : TOnError;
     FVersao       : string;
     FSobre        : string;
+    fCedido       : string;
+
     procedure SetConfiguracoes(const Value: TConfiguracoes);
   strict private
     FStatus: string;
@@ -92,7 +94,8 @@ type
     destructor Destroy; override;
 
     property Anexos : TStringList read FAnexos write FAnexos;
-    procedure Enviar(const AEmailDestinatario: string; const ATitulo: string; const AMensagem : WideString);
+    procedure Enviar(const AEmailDestinatario: string; const ATitulo: string; const AMensagem : WideString;
+    AEmailcc : string = ''; AEmailcco : string = '' ; AEmailReplyTo : string='');
 
     function GetStatus: string;
     function GetError: string;
@@ -101,6 +104,7 @@ type
 
     property Versao : string read FVersao;
     property Sobre  : string read FSobre;
+    property Cedido : string read fCedido;
 
     property OnStatus: TOnStatus read FOnStatus write FOnStatus;
     property OnError : TOnError  read FOnError  write FOnError;
@@ -127,8 +131,9 @@ begin
   inherited;
   FConfiguracoes:= TConfiguracoes.Create;
   FAnexos       := TStringList.Create;
-  Self.FVersao  := '1.5.1';
+  Self.FVersao  := '2.0.1';
   Self.FSobre   := 'www.inovefast.com.br';
+  self.fCedido  := 'https://github.com/tiagopassarelladt?tab=repositories';
 end;
 
 destructor TEMail.Destroy;
@@ -142,7 +147,8 @@ begin
   inherited;
 end;
 
-procedure TEMail.Enviar(const AEmailDestinatario: string; const ATitulo: string; const AMensagem : WideString);
+procedure TEMail.Enviar(const AEmailDestinatario: string; const ATitulo: string; const AMensagem : WideString;
+AEmailcc : string = ''; AEmailcco : string = ''; AEmailReplyTo : string='');
 var
   FSMTP : TIdSMTP;
   FIdSSLIOHandlerSocketOpenSSL: TIdSSLIOHandlerSocketOpenSSL;
@@ -225,6 +231,15 @@ begin
     FIdMensagem.Recipients.EMailAddresses := AEmailDestinatario;
     FIdMensagem.Subject                   := ATitulo;
     FIdMensagem.Body.Text                 := AMensagem;
+
+
+
+    if AEmailcc <> '' then
+    FIdMensagem.CCList.EMailAddresses     := AEmailcc;          // Added by Francisco Aurino 12/12/2022 11:26:29
+    if AEmailcco <> '' then
+    FIdMensagem.BccList.EMailAddresses    := AEmailcco;         // Added by Francisco Aurino 12/12/2022 11:26:29
+    if AEmailReplyTo <> '' then
+    FIdMensagem.ReplyTo.EMailAddresses    := AEmailReplyTo;     // Added by Francisco Aurino 12/12/2022 11:33:12
 
     FIdText := TIdText.Create(FIdMensagem.MessageParts, FIdMensagem.Body);
     FIdText.ContentType := 'text/html';
